@@ -1,49 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Login Mobile</title>
 
-<title>Login Mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 
-<link rel="stylesheet"
-href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        function semak() {
 
-<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+            var user = $("#username").val();
+            var pass = $("#password").val();
 
-<script src="script.js"></script>
+            if (user === "" || pass === "") {
+
+                // TOAST
+                $("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'>" +
+                  "<h3>Sila isi username dan password</h3></div>")
+                .css({
+                    display: "block",
+                    opacity: 0.9,
+                    top: $(window).scrollTop() + 100
+                })
+                .appendTo($.mobile.pageContainer)
+                .delay(2000)
+                .fadeOut(400, function () {
+                    $(this).remove();
+                });
+
+                return false;
+            }
+
+            // POPUP SUCCESS
+            $("#popupSuccess").popup("open");
+
+            // GO TO PAGE 2 (INSIDE SAME FILE)
+            setTimeout(function () {
+                $.mobile.changePage("#page2");
+            }, 1500);
+
+            return false;
+        }
+    </script>
 
 </head>
 
 <body>
 
-<div data-role="page">
+<!-- PAGE 1 -->
+<div data-role="page" id="page1">
 
-<div data-role="header">
-<h1>Login Page</h1>
+    <div data-role="header">
+        <h1>Login Page</h1>
+    </div>
+
+    <div data-role="content">
+
+        <!-- NO action, NO php -->
+        <form onsubmit="return semak()">
+
+            <label>Username:</label>
+            <input type="text" id="username">
+
+            <label>Password:</label>
+            <input type="password" id="password">
+
+            <input type="submit" value="Submit">
+
+        </form>
+
+    </div>
+
+    <!-- POPUP -->
+    <div data-role="popup" id="popupSuccess" class="ui-content">
+        <p>Login Berjaya!</p>
+    </div>
+
+    <div data-role="footer">
+        <h4>DFK20013</h4>
+    </div>
+
 </div>
 
-<div data-role="content">
 
-<form action="login.php" method="post" onSubmit="return semak()" data-ajax="false">
+<!-- PAGE 2 -->
+<div data-role="page" id="page2">
 
-<label>Username:</label>
-<input type="text" id="username" name="username">
+    <div data-role="header">
+        <h1>Welcome</h1>
+    </div>
 
-<label>Password:</label>
-<input type="password" id="password" name="password">
+    <div data-role="content">
+        <h2>Login Successful 🎉</h2>
+        <p>You are now in Page 2</p>
+    </div>
 
-<input type="submit" value="Submit">
-
-</form>
-
-</div>
-
-<div data-role="footer">
-<h4>DFK20013</h4>
-</div>
+    <div data-role="footer">
+        <h4>DFK20013</h4>
+    </div>
 
 </div>
 
