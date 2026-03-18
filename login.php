@@ -1,19 +1,22 @@
 <?php
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
 
     if ($username == "" || $password == "") {
-        echo "Error: Please fill in all fields.";
+        echo "<h2>Error: Please fill in all fields</h2>";
     } else {
-        echo "Login Successful <br>";
-        echo "Welcome " . $username;
+
+        // REDIRECT to success page
+        header("Location: success.php?user=" . urlencode($username));
+        exit();
+
     }
 
 } else {
-    echo "No data received.";
+    echo "No data received";
 }
 
 ?>

@@ -2,51 +2,19 @@
 <html>
 <head>
     <title>Login Mobile</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- jQuery Mobile CSS -->
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- jQuery Mobile -->
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-    <script>
-        function semak() {
-
-            var user = $("#username").val();
-            var pass = $("#password").val();
-
-            if (user === "" || pass === "") {
-
-                // TOAST
-                $("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'>" +
-                  "<h3>Sila isi username dan password</h3></div>")
-                .css({
-                    display: "block",
-                    opacity: 0.9,
-                    top: $(window).scrollTop() + 100
-                })
-                .appendTo($.mobile.pageContainer)
-                .delay(2000)
-                .fadeOut(400, function () {
-                    $(this).remove();
-                });
-
-                return false;
-            }
-
-            // POPUP SUCCESS
-            $("#popupSuccess").popup("open");
-
-            // GO TO PAGE 2 (INSIDE SAME FILE)
-            setTimeout(function () {
-                $.mobile.changePage("#page2");
-            }, 1500);
-
-            return false;
-        }
-    </script>
-
+    <!-- External JS -->
+    <script src="script.js"></script>
 </head>
 
 <body>
@@ -60,9 +28,8 @@
 
     <div data-role="content">
 
-        <!-- NO action, NO php -->
+        <!-- Form triggers JS only -->
         <form onsubmit="return semak()">
-
             <label>Username:</label>
             <input type="text" id="username">
 
@@ -70,7 +37,6 @@
             <input type="password" id="password">
 
             <input type="submit" value="Submit">
-
         </form>
 
     </div>
@@ -86,23 +52,18 @@
 
 </div>
 
-
 <!-- PAGE 2 -->
 <div data-role="page" id="page2">
-
     <div data-role="header">
         <h1>Welcome</h1>
     </div>
-
     <div data-role="content">
         <h2>Login Successful 🎉</h2>
-        <p>You are now in Page 2</p>
+        <p>You are now login successful</p>
     </div>
-
     <div data-role="footer">
         <h4>DFK20013</h4>
     </div>
-
 </div>
 
 </body>

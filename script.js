@@ -3,10 +3,10 @@ function semak() {
     var user = $("#username").val();
     var pass = $("#password").val();
 
-    // VALIDATION
+    // VALIDATION: check empty fields
     if (user === "" || pass === "") {
 
-        // TOAST MESSAGE
+        // TOAST MESSAGE (jQuery Mobile style)
         $("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'>" +
           "<h3>Sila isi username dan password</h3></div>")
         .css({
@@ -20,16 +20,16 @@ function semak() {
             $(this).remove();
         });
 
-        return false;
+        return false; // stop form submit
     }
 
     // POPUP SUCCESS
     $("#popupSuccess").popup("open");
 
-    // REDIRECT TO PAGE 2
+    // GO TO PAGE 2 (inside same HTML file)
     setTimeout(function () {
-        window.location.href = "page2.html";
-    }, 2000);
+        $.mobile.changePage("#page2");
+    }, 1500);
 
     return false;
 }
